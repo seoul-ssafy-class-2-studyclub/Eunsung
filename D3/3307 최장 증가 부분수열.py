@@ -1,13 +1,23 @@
+def counting(arr):
+    arr.insert(0, 0)
+    board = [0] * (N + 1)
+    
+    for i in range(1, N + 1):
+
+        temp = []
+
+        for l in range(i):
+            if arr[l] < arr[i]:
+                temp.append(board[l] + 1)
+        
+        board[i] = max(temp)
+    return max(board)
+
 for rounds in range(int(input())):
+
     N = int(input())
-    numbers = list(map(int,input().split()))
 
-    i = N - 1
-    while i > 0:
-        if numbers[i] != max(numbers[:i + 1]):
-            numbers.remove(max(numbers[:i + 1]))
-            i -= 1
-        i -= 1
-    print(numbers)
+    arr = list(map(int,input().split()))
 
+    print(f'#{rounds + 1} {counting(arr)}')
 
