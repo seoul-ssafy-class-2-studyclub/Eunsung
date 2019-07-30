@@ -1,9 +1,10 @@
 near = [(0,-1), (0,1), (-1,0)]
 def ladder_orgi(y,x,ladder):
 
-    for dy,dx in near:
-        if y + dy == 0:
-            return x + dx
+    if y != 1:
+        for dy,dx in near:
+            if y + dy == 0:
+                return x
     
     if x == 99:
         for dy,dx in [(0,-1), (-1,0)]:

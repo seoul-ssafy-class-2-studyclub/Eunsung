@@ -9,6 +9,6 @@ for rounds in range(1,11):
     for i in range(100):
         board.append(input())
     
-    print(is_pan('stress'))
+    board_col = [''.join(zip(*board))]
 
     # print(f'#{rounds} {count}')
