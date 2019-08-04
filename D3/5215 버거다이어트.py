@@ -1,10 +1,14 @@
 def counting(arr):
-    points = [(0,0)]
+    points = [[0,0]]
 
     for i in range(N):
         temp = [arr[i], [0, 0]]
-        points.extend([(x[0] + y[0], x[1] + y[1]) for x in temp for y in points if x[1] + y[1] <= C])
-        points = list(set(points))
+        
+        for key in temp:
+            for key2 in points:
+                if key[1] + key2[1] <= C:
+                    print([key[0]+key2[0], key[1]+key2[1]])
+                    points.append([key[0]+key2[0], key[1]+key2[1]])
     
     points.sort(reverse=True)
     return points[0][0]
