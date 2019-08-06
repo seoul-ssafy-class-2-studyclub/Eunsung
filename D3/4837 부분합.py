@@ -1,5 +1,5 @@
 def bubun(cnt, num, now, su):
-    if num > 12 or num > K:
+    if num > 12:
         return cnt
     
     if now != K and su == N:
@@ -16,7 +16,7 @@ def bubun(cnt, num, now, su):
     cnt = bubun(cnt, num + 1, now, su)
 
     if now + num <= K and su < N:
-        cnt += bubun(cnt, num + 1, now + num, su+ 1)
+        cnt = bubun(cnt, num + 1, now + num, su+ 1)
     
     cache[su][now][num] = cnt
     return cnt
