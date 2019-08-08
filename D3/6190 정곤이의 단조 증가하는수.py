@@ -5,7 +5,7 @@
 # #             return False
 # #     return True
 
-
+result = []
 for rounds in range(int(input())):
     N = int(input())
     numbers = list(map(int,input().split()))
@@ -23,7 +23,9 @@ for rounds in range(int(input())):
             max_danjo = number
             break
 
-    print(f'#{rounds + 1} {max_danjo}')
+    result.append(f'#{rounds + 1} {max_danjo}')
+for value in result:
+    print(value)
 
 
 # for rounds in range(int(input())):

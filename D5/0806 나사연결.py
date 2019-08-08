@@ -2,14 +2,13 @@
 # from pprint import pprint
 # sys.stdin = open('input.txt', 'r')
 
-def ambasubasa(result_list, su, am):
+def ambasubasa(result_list, su, am, y):
     #이미 들어와있으므로 False로 들어왔다는 표시를 해준다
     graph[su][am] = False
 
     #현재 나사를 조합에 추가해줘야하지만, 만약 체크포인트상태로 들어온거라면 두번입력되므로 그 상황에 대해서 걸러주고
     if not (su, am) in result_list:
         result_list.append((su, am))
-    
     #길이를 저장해준다(할필요없다.)
     length = len(result_list)
 
@@ -19,10 +18,10 @@ def ambasubasa(result_list, su, am):
     
     #암나사와 같은 지름의 숫나사가 있다면 그리로 간다. 이때 다시 돌아올 수 있도록 체크포인트 가장 끝에 저장해준다.
     for i in range(max_length + 2):
-        if graph[am][i]:
+        if graph[am][i] and i != y[1]:
             graph[am][i] = False
             checkpoint.append((su, am))
-            return ambasubasa(result_list, am, i)
+            return ambasubasa(result_list, am, i, y)
     
     #만약 같은 지름의 숫나사가 없다면 체크포인트로 돌아가야하는데
 
@@ -37,9 +36,11 @@ def ambasubasa(result_list, su, am):
     temp = result_list[:]
 
     #체크포인트로 돌아가면 지금 들어온 곳은 필요없으니 삭제. 2,3개의 체크포인트를 되돌아가는경우에도 마찬가지로 삭제된다.
-    result_list.pop()
+    y = result_list.pop()
+    graph[y[0]][y[1]] = True
     #그리고 직전 체크포인트로 돌아가 다시 한번 돈다.
-    result_list = ambasubasa(result_list, x[0], x[1])
+    result_list = ambasubasa(result_list, x[0], x[1], y)
+    
 
     #체크포인트로 돌아간 상태와 현재를 비교해서 더 긴쪽을 반환한다
     if len(result_list) > len(temp):
@@ -85,7 +86,8 @@ for round in range(int(input())):
         checkpoint = []
 
         #해당 나사를 시작으로 하였을때 나사조합을 구하고 저장해둔다.
-        temp_result = ambasubasa([],bolts[i][0],bolts[i][1])
+        y = (-1, -1)
+        temp_result = ambasubasa([],bolts[i][0],bolts[i][1], y)
 
         #가장 긴것을 구한다.
         if len(max_result) < len(temp_result):
