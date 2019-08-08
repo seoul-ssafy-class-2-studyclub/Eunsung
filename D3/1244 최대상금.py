@@ -9,18 +9,32 @@ def max_prices(depth, number):
     
 
     #아래가 DP를 사용한 상황. 만약 지금 현재 횟수에서, 주어진 숫자를 계산했었다면. 해당 값을 꺼내어 가져와서 리턴한다(한번더 할필요가없다.)
-    #cache가 2차원 구조인데
+    #cache가 2차원 구조인데 depth 는 현재 전환횟수를 인덱스로, number은 현재 숫자를 키값으로 하는 리스트/딕셔너리에넣어서
+    # 저장해놓았다. 
 
+    #만약 저장해놓은 값이있다면 그 값을 바로 리턴함으로써 다시 계산하는 일이 없도록한다.
     if cache[depth].get(number) != None:
         res = cache[depth][number]
         return res
 
+    #저장해놓지 않았다면 구해야하므로, res(결과값=> 최대상금값)를 초기화
     res = 0
-    for [x,y] in change_cases:
-        temp = changelist(list(number), x, y)
-        res = max(res, int(max_prices(depth + 1, temp)))
+    for [x,y] in change_cases: #밖에서 구한, 모든 가능한 전환결과에 대해서 체크를하여
+        temp = changelist(list(number), x, y) #전환을하고
+        res = max(res, int(max_prices(depth + 1, temp))) #그 값을 depth를 1증가시키면서 넣는다.
+        '''
+        여기서 맥스값은 바로 다음 깊이의 맥스값을 구하는 것이아니다.
+        여기서 불러온 함수내에서 다시 깊이를 증가시켜서 함수를 넣고, 그 함수에서 다시 깊이를 증가시켜서 함수에 넣어서
+        최종적으로 함수 가장위에있는 depth == K일때 리턴값을 비교하여주는것이다.
+        ==> 즉 여기서는 '123'에서 가능한 모든 전환 가능한 경우 6가지에 대해서 
+        각각 모두 최대깊이까지 내려가서(물론 다음 깊이에서도 6가지 경우씩 6 * 6 * 6 * 6 *.... 뎁스번  반복하여 깊이가 증가할수록
+        경우의 수가 기하급수적으로 증가한다) 모든 경우를 다비교하여 최대값을 넣는것이다.
+        이를 dP없이 한다면 계산을 못한다 3자리 수만하더라도 6 ** depth 만큼 계산이 필요하기때문에
+        '''
     
     cache[depth][number] = res
+    #계산을 다했다면 현재 깊이와 숫자에 대해서 계산결과값을 저장소에 저장하고
+    #결과를 리턴한다.
     return res
 
 '''
