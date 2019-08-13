@@ -23,8 +23,6 @@ def ladder_orgi(y,x,ladder):
             ladder[y][x] = 3
             return ladder_orgi(y+dy, x+dx,ladder)
 
-
-
 for rounds in range(1,11):
     ladder = []
     ro = int(input())

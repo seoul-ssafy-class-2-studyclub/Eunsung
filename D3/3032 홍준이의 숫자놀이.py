@@ -1,5 +1,5 @@
 def uclid(A, B):
-    x = -10
+    x = 1
     while (A * x) % B != 1:
         x += 1
         if x > 100:
@@ -13,7 +13,7 @@ for rounds in range(int(input())):
     
     x = uclid(A, B)
 
-    y = - (x * A) // B
+    y = - (x * A - 1) // B
 
     temp_result = ' '.join([str(x), str(y)])
 

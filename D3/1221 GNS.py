@@ -11,11 +11,34 @@ numbers = {
     'NIN' : 9,
 }
 
+
+
+def my_append(arr, atom):
+    arr += [atom]
+    return arr
+
+
+
 for rounds in range(int(input())):
     T, N = input().split()
     words = input().split()
 
-    words.sort(key=lambda x: numbers[x])
+    number_set = [[] for _ in range(10)]
 
-    print(f'{T}\n{" ".join(words)}')
+    for i in range(int(N)):
+        number_set[numbers[words[i]]] = my_append(number_set[numbers[words[i]]], words[i])
+    
+    result = []
+    for i in range(10):
+        result += number_set[i]
+
+    result_str = result[0]
+
+
+    print('%s' %T)
+    for i in range(1, int(N)):
+        result_str += ' ' + result[i]
+    print(result_str)
+        
+
         
