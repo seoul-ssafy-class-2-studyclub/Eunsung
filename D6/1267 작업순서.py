@@ -25,16 +25,14 @@ def check_babies(num):
     return res
 
 
-# result_list = []
 for round in range(1,11):
     P, R = map(int,input().split())
     dot_row = list(map(int,input().split()))
-    # dots = []
+    
     relations = [[0 for _ in range(P+1)] for _ in range(P+1)]
     for i in range(R):
-        # dots.append((dot_row[i*2], dot_row[i*2 + 1]))
         relations[dot_row[i*2]][dot_row[i*2 + 1]] = 1
-    # print(relations)
+    
     cb_cache = [-1 for _ in range(P + 1)]
 
     sons = [-1 for _ in range(P + 1)]
