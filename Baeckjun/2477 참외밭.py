@@ -1,27 +1,25 @@
 cham = int(input())
 
-bat = {
-    1:0,
-    2:0,
-    3:0,
-    4:0,
-    }
-bang = []
-le = []
-
+locations = []
+x = y = 0
 for i in range(6):
     see, length = map(int,input().split())
-    bat[see] += length
-    bang.append(see)
-    le.append(length)
+    if see == 1:
+        x += length
+    elif see == 2:
+        x -= length
+    elif see == 3:
+        y -= length
+    else:
+        y += length
+    locations.append((x,y))
+    
+first = 0
+second = 0
+for i in range(5):
+    first += locations[i][0] * locations[i+1][1]
+    second += locations[i][1] * locations[i+1][0]
+result = abs(first - second) // 2
 
-
-# if bang[0]==bang[2]:
-#     minus = le[1]*le[2]
-# elif bang[0]==bang[4]:
-#     minus = le[0]*le[5]
-# else:
-#     minus = le[3]*le[4]
-print(bat)
-print(cham*(bat[1]*bat[3] - minus))
+print(cham*result)
 
