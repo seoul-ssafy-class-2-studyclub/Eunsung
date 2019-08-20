@@ -12,7 +12,7 @@ for rounds in range(4):
     sum_y = (rectangles[3] - rectangles[1]) + (rectangles[7] - rectangles[5])
 
 
-    if distance > sum_x ** 2 + sum_y ** 2:
+    if distance > sum_x ** 2 + sum_y ** 2 or sum_x < abs(center1[0] - center2[0]) or sum_y < abs(center1[1] - center2[1]):
         result = 'd'
     elif distance == sum_x ** 2 + sum_y ** 2:
         result = 'c'
