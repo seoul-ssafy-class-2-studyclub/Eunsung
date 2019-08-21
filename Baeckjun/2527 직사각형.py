@@ -1,4 +1,3 @@
-
 for rounds in range(4):
     result = 0
     rectangles = list(map(int,input().split()))
