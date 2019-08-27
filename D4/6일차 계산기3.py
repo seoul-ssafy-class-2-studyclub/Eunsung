@@ -11,12 +11,19 @@ def cal(a,b,eq):
     elif eq == '/':
         return a // b
 
-seq = {
+isp = {
     '+': 1,
     '-': 1,
     '*': 2,
     '/': 2,
     '(': 0,
+}
+icp = {
+    '+': 1,
+    '-': 1,
+    '*': 2,
+    '/': 2,
+    '(': 3,
 }
 
 for ro in range(10):
@@ -42,9 +49,9 @@ for ro in range(10):
                     list_b.append(temp)
             else:
                 if stack:
-                    if seq[stack[-1]] > seq[letter]:
+                    if isp[stack[-1]] > icp[letter]:
                         temp2 = stack[-1]
-                        while seq[temp2] > seq[letter]:
+                        while isp[temp2] > icp[letter]:
                             
                             list_b.append(stack.pop())
                             if not stack:
