@@ -33,3 +33,4 @@ for ro in range(int(input())):
         visited[i] = False
 
     print('#%d %d' % (ro + 1, result))
+ 
