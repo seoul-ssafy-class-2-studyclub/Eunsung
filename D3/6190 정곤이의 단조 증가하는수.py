@@ -19,6 +19,7 @@ for rounds in range(int(input())):
         for i in range(len(number) - 1):
             if number[i] > number[i + 1]:
                 check = False
+                break
         if check == True:
             max_danjo = number
             break

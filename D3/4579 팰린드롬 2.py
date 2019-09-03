@@ -6,12 +6,12 @@ for rounds in range(int(input())):
         if word == word_reversed:
             result = 'Exist'
         else:
-            result = 'Not Exist'
+            result = 'Not exist'
     else:
         location = min(word.index('*'), word_reversed.index('*'))
         if word[0:location] == word_reversed[0:location]:
             result = 'Exist'
         else:
-            result = 'Not Exist'
+            result = 'Not exist'
 
     print(f'#{rounds + 1} {result}')

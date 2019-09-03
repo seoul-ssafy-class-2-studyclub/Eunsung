@@ -1,4 +1,5 @@
-
+import sys
+sys.setrecursionlimit(10000)
 near = [(-1, 0), (0, -1), (0, 1), (1, 0)]
 from pprint import pprint
 def dfs(y, x):
@@ -16,13 +17,12 @@ def dfs(y, x):
                 dfs(ry, rx)
 
     
-
 N, L, R = map(int,input().split())
 
 nations = []
 sums = []
 hood = []
-visited = [[False] * N for _ in range(N)]
+visited = [[False for _ in range(N + 1)] for _ in range(N + 1)]
 for _ in range(N):
     nations.append(list(map(int,input().split())))
 
@@ -51,14 +51,15 @@ while True:
 
                 if flag:
                     sums.append(temp_sum)
-                
 
-    if not hood:
+                
+    if not hood or not sums:
         break
     while hood:
         temp = hood.pop(0)
         cnt = len(temp)
         sum_s = sums.pop(0)
+
         for y, x in temp:
             nations[y][x] = sum_s // cnt
             visited[y][x] = False
