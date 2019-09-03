@@ -15,7 +15,6 @@ def dfs(y, x):
                 hood[-1].append((ry, rx))
                 dfs(ry, rx)
 
-    
 
 N, L, R = map(int,input().split())
 
