@@ -6,7 +6,6 @@ def permutaion(arr):
     for i in range(2):
         permutaion(arr + [i])
     
-
 for ro in range(int(input())):
     N = int(input())
 
@@ -45,30 +44,35 @@ for ro in range(int(input())):
         
         waiting_1.sort()
         waiting_2.sort()
-
-        t = 0
+        t = -1
         while stair_1 or stair_2 or waiting_1 or waiting_2:
             t += 1
 
             for i in range(2):
+                # while waitings_list[i] and len(stairs_list[i]) < 3:
+                #     if  waitings_list[i][0] <= t:
+                #         waitings_list[i].pop(0)
+                #         stairs_list[i].append(0)
+                #     else: break
+
                 for _ in range(len(stairs_list[i])):
                     temp = stairs_list[i].pop(0)
-                    if temp == stairs[i][2]:
+                    if temp == stairs[i][2] - 1:
                         continue
+
                     stairs_list[i].append(temp + 1)
-                
+
                 while waitings_list[i] and len(stairs_list[i]) < 3:
                     if  waitings_list[i][0] <= t:
                         waitings_list[i].pop(0)
                         stairs_list[i].append(0)
                     else: break
-                    print(i,'wa', waitings_list[i])
-                    print(i,'st', stairs_list[i])
-                    print(t)
+                    # print(i,'wa', waitings_list[i])
+                    # print(i,'st', stairs_list[i])
+                    # print(t)
                         
-                    
                 
         if t < res:
             res = t
 
-    print('#%d %d' %(ro+ 1, res))
+    print('#%d %d' %(ro+ 1, res + 1))
