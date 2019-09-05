@@ -57,3 +57,4 @@ for ro in range(int(input())):
         
 
     print('#%d %d'%(ro + 1, result))
+    
