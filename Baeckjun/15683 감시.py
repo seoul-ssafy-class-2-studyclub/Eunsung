@@ -47,7 +47,7 @@ for y in range(N):
 
 K = len(cctvs)
 combi([], 0)
-max_count = 0
+max_count = 9999
 while directions_choices:
     visitied = [[False] * M for _ in range(N)]
     cases = directions_choices.pop(0)
@@ -57,8 +57,9 @@ while directions_choices:
         see(cctvs[cctv], cases[cctv])
     
     temp = zeros - cnt
+    print(temp)
 
-    if temp > max_count:
+    if temp < max_count:
         max_count = temp
         
 print(max_count)
