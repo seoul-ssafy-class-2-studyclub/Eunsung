@@ -18,7 +18,8 @@ for ro in range(int(input())):
     if len(res) >= 13:
         res = ['overflow']
 
-    print('#%d %s' %(ro + 1, ''.join(res)))
+    # print('#%d %s' %(ro + 1, ''.join(res)))
+    print(f'{res}')
 
         
         
