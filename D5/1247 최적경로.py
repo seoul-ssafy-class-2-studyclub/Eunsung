@@ -6,8 +6,11 @@ def permutation(arr, k, dis):
         dis += abs(lo_list[arr[-1]][0] - lo_list[1][0]) + abs(lo_list[arr[-1]][1] - lo_list[1][1])
         if dis < min_dis:
             min_dis = dis
-
         return
+    
+    if dis >= min_dis:
+        return
+
     for idx in range(len(num_list)):
         if visited[idx]:
             continue
