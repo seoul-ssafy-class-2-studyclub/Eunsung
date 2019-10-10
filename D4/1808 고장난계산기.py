@@ -7,9 +7,13 @@ for num in range(2, 500002):
         primenumbers[bae] = True
 
 def counting(num):
+    if cache.get(num) != None:
+        return cache[num]
+
     for letter in str(num):
         if not nums[int(letter)]:
             if not primenumbers[num]:
+                cache[num] = False
                 return False
             else:
                 min_count = 999
@@ -18,13 +22,19 @@ def counting(num):
                     su1_result = counting(su1)
                     su2_result = counting(su2)
 
-                    if not su1_result or not su2_result:
+                    if not su1_result:
+                        cache[su1] = False
+                        continue
+                    if not su2_result:
+                        cache[su2] = False
                         continue
                     else:
                         min_count = min(min_count, su1_result + su2_result + 1)
                 return min_count
-            
-    return len(str(num))
+    
+    res = len(str(num))
+    cache[num] = res
+    return res
     
 def findyaksu(num):
     result = []
@@ -37,6 +47,7 @@ def findyaksu(num):
 for ro in range(int(input())):
     nums = list(map(int,input().split()))
     gaol_num = int(input())
+    cache = dict()
     res = counting(gaol_num) + 1
     if res == 1000:
         res = -1
