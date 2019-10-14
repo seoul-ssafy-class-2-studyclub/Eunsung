@@ -3,9 +3,14 @@ near = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 def countingroom(y, x, roomnumber):
     global rooms
     visited[y][x] = True
+    board[y][x] = (board[y][x], roomnumber)
     for idx in range(4):
-        if board[y][x] & (1 << idx):
-            
+        if board[y][x][0] & (1 << idx):
+            dy, dx = near[idx]
+            ry = y + dy
+            rx = x + dx
+            if 0 <= ry < M and 0 <= rx < N and type(board[ry][rx]) == tuple and roomnumber != board[ry][rx][1]:
+                neighbor.add((roomnumber, board[ry][rx][1]))
             continue
         dy, dx = near[idx]
         ry = y + dy
@@ -23,7 +28,7 @@ for y in range(M):
 
 rooms = 0
 cache = []
-neighbor = []
+neighbor = set()
 size_of_rooms = [0] * 2501
 
 for y in range(M):
@@ -36,5 +41,11 @@ for y in range(M):
 
 
 print(rooms)
-print(size_of_rooms[:rooms + 1])
-# print(neighbor)
+print(max(size_of_rooms[:rooms + 1]))
+
+max_count = 0
+for a, b in neighbor:
+    temp = size_of_rooms[a] + size_of_rooms[b]
+    if temp > max_count:
+        max_count = temp
+print(max_count)
