@@ -26,7 +26,6 @@ for ro in range(int(input())):
     stair_choice = []
     permutaion([])
     res = 999999
-    # stair_choice = [[0, 0, 0, 0 , 1, 1]]
     waiting_1 = []
     waiting_2 = []
     waitings_list = [waiting_1, waiting_2]
@@ -49,11 +48,6 @@ for ro in range(int(input())):
             t += 1
 
             for i in range(2):
-                # while waitings_list[i] and len(stairs_list[i]) < 3:
-                #     if  waitings_list[i][0] <= t:
-                #         waitings_list[i].pop(0)
-                #         stairs_list[i].append(0)
-                #     else: break
 
                 for _ in range(len(stairs_list[i])):
                     temp = stairs_list[i].pop(0)
@@ -67,9 +61,6 @@ for ro in range(int(input())):
                         waitings_list[i].pop(0)
                         stairs_list[i].append(0)
                     else: break
-                    # print(i,'wa', waitings_list[i])
-                    # print(i,'st', stairs_list[i])
-                    # print(t)
                         
                 
         if t < res:
