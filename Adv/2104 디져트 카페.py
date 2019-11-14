@@ -40,7 +40,6 @@ for ro in range(int(input())):
         for x in range(N):
             start = (y, x)
             result = max(result, findroute([board[y][x]], y, x, (-1, -1)))
-    # result = max(result, findroute([board[2][1]], 2, 1, (-1, -1)))
     print('#%d %d' %(ro + 1, result))
 
     
