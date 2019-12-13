@@ -1,5 +1,5 @@
-from collections import deque
-results = deque()
+
+results = [''] * 100000
 for ro in range(int(input())):
     N = int(input())
 
@@ -24,7 +24,7 @@ for ro in range(int(input())):
         depth -= 1
     
     result = 'Alice' if flag else 'Bob'
-    results.append('#%d %s' %(ro+ 1, result))
+    results[ro] = '#%d %s' %(ro+ 1, result)
 
-re = '\n'.join(results)
+re = '\n'.join(results[:ro + 1])
 print(re)
