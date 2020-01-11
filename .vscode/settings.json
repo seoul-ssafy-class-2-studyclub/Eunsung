@@ -1,4 +1,7 @@
 {
     "python.linting.enabled": false,
     "eslint.enable": false,
+    "files.associations": {
+        "iostream": "cpp"
+    },
 }
